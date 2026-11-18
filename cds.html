@@ -37,7 +37,7 @@ footer{text-align:center;font-size:12px;color:#7a8794;margin:30px 0}
  <div class="card"><h2>Instruction accepted</h2><dl>
   <dt>Trade reference</dt><dd id="spnTradeId"></dd><dt>Settlement date</dt><dd id="spnSettleDate"></dd>
   <dt>Submitted</dt><dd id="spnSubmittedAt"></dd><dt>Last updated</dt><dd id="spnUpdatedAt"></dd><dt>Overall status</dt><dd id="spnTradeStatus"></dd></dl></div>
- <div class="card"><h2>Status by account</h2><table id="tblResult"><thead><tr><th>Account</th><th class="n">Instructed</th><th class="n">Settled</th><th>Status</th><th class="n">Cash (CAD)</th><th>Message</th></tr></thead><tbody></tbody></table></div>
+ <div class="card"><h2>Status by account</h2><p class="hint">Account | Instructed | Settled | Status | Cash (CAD) | Message ;</p><div id="tblResult" class="lines"></div></div>
 </div>
 </main>
 <footer>Mock screen for an automation demo. Not a real system. <a href="index.html">All screens</a></footer>
@@ -63,8 +63,7 @@ function submit() {
   $('spnTradeId').textContent = id; $('spnSettleDate').textContent = r.settleDate; $('spnSubmittedAt').textContent = r.submittedAt;
   $('spnUpdatedAt').textContent = r.updatedAt; $('spnTradeStatus').textContent = r.tradeStatus;
   const cls = (s) => s === 'Settled' ? 'ok' : s === 'Failed' ? 'bad' : 'warn';
-  const n = (v) => Number(v).toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  $('tblResult').tBodies[0].innerHTML = r.allocations.map(a => `<tr><td>${a.accountId}</td><td class="n">${a.instructedQuantity}</td><td class="n">${a.settledQuantity}</td><td class="${cls(a.status)}">${a.status}</td><td class="n">${n(a.cashAmount)}</td><td>${a.message || ''}</td></tr>`).join('');
+  $('tblResult').innerHTML = r.allocations.map(a => `<div class="line">${a.accountId} | ${a.instructedQuantity} | ${a.settledQuantity} | <span class="${cls(a.status)}">${a.status}</span> | ${Number(a.cashAmount).toFixed(2)} | ${a.message || ''} ;</div>`).join('');
   $('divConfirmation').classList.remove('hidden');
 }
 $('btnSubmit').addEventListener('click', submit);
