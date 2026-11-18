@@ -14,6 +14,6 @@ Trade references the pages know: `TRD-CM-00001` to `TRD-CM-00012` (CDS and GL sk
 
 Do not rename these without changing the robots.
 
-- **crm.html**: `txtTradeId`, `btnSearch`, `divResultsPanel`, `divNotFound`, `spnTradeId`, `spnClientId`, `spnClientName`, `spnLei`, `spnRiskRating`, `spnRelationshipManager`, `spnCommissionSchedule`, `spnCommissionRate`, `spnOnboardingStatus`, `spnSsiOnFile`, `tblAccounts`, `tblStanding` (one line per row, fields separated by ` | `).
-- **cds.html**: `txtTradeId`, `txtSettleDate`, `txtAcct1..3`, `txtQty1..3`, `btnSubmit`, `divError`, `divConfirmation`, `spnTradeId`, `spnSettleDate`, `spnSubmittedAt`, `spnUpdatedAt`, `spnTradeStatus`, `tblResult`.
-- **gl.html**: `txtTradeId`, `txtJournalLines` (one line per entry: entry id, date, account, debit, credit, amount, comma separated), `btnPost`, `divError`, `divConfirmation`, `spnPostingId`, `spnTradeId`, `spnLinesPosted`, `spnTotalDebits`, `tblPosted`.
+- **crm.html**: `spnStatus` (always visible: "Client found." or "Rejected: ..."), `txtTradeId`, `btnSearch`, `divResultsPanel`, `divNotFound`, `spnTradeId`, `spnClientId`, `spnClientName`, `spnLei`, `spnRiskRating`, `spnRelationshipManager`, `spnCommissionSchedule`, `spnCommissionRate`, `spnOnboardingStatus`, `spnSsiOnFile`, `tblAccounts`, `tblStanding` (one line per row, fields separated by ` | `).
+- **cds.html**: `spnStatus` ("Accepted by CDS." or "Rejected: ..."), `txtTradeId`, `txtSettleDate`, `txtAcct1..3`, `txtQty1..3`, `btnSubmit`, `divError`, `divConfirmation`, `spnTradeId`, `spnSettleDate`, `spnSubmittedAt`, `spnUpdatedAt`, `spnTradeStatus`, `tblResult`.
+- **gl.html**: `spnStatus` ("Accepted: journal posted." or "Rejected: ..."), `txtTradeId`, `txtJournalLines` (one line per entry: entry id, date, account, debit, credit, amount, comma separated), `btnPost`, `divError`, `divConfirmation`, `spnPostingId`, `spnTradeId`, `spnLinesPosted`, `spnTotalDebits`, `tblPosted`.
