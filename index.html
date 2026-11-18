@@ -1,30 +1,45 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capital Markets demo screens</title><style>
-*{box-sizing:border-box}body{margin:0;font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1d2733;background:#eef1f5}
-header{background:#0b3a78;color:#fff;padding:12px 24px;display:flex;align-items:center;gap:14px}
-header .logo{background:#ffd100;color:#0b3a78;font-weight:800;padding:4px 8px;border-radius:4px;letter-spacing:.5px}
-header h1{font-size:17px;margin:0;font-weight:600}header small{opacity:.8;margin-left:auto}
-main{max-width:980px;margin:22px auto;padding:0 18px}
-.card{background:#fff;border:1px solid #d9dee5;border-radius:8px;padding:16px 18px;margin-bottom:16px}
-.card h2{font-size:14px;margin:0 0 10px;color:#0b3a78;text-transform:none}
-label{display:block;font-size:12px;color:#5c6b7a;margin-bottom:3px}
-input,select,textarea{font:inherit;padding:7px 9px;border:1px solid #b9c2cd;border-radius:6px;width:100%;background:#fff}
-button{font:inherit;font-weight:600;padding:8px 16px;border:0;border-radius:6px;background:#0b3a78;color:#fff;cursor:pointer}
-.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.row>div{flex:1;min-width:140px}.row>.fit{flex:0 0 auto;min-width:0}
-dl{display:grid;grid-template-columns:200px 1fr;gap:6px 14px;margin:0}dt{color:#5c6b7a}dd{margin:0;font-weight:600}
-table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #e3e7ed}th{font-size:12px;color:#5c6b7a;font-weight:600}
-td.n,th.n{text-align:right}
-.hidden{display:none}.err{background:#fdeceb;border:1px solid #f1b5b1;color:#8d1c14;padding:10px 14px;border-radius:6px}
-.ok{color:#1c6b3a}.warn{color:#8a5a00}.bad{color:#8d1c14}
-.hint{font-size:12px;color:#5c6b7a;margin:0 0 6px}
-.status{margin:10px 0 0;font-weight:600}
-.lines .line{padding:6px 8px;border-bottom:1px solid #e3e7ed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
-footer{text-align:center;font-size:12px;color:#7a8794;margin:30px 0}
+*{box-sizing:border-box}.hidden{display:none!important}
+
+body{margin:0;background:#008080;font:11px/1.3 Tahoma,Verdana,Arial,sans-serif;color:#000;padding:18px 10px}
+.win{max-width:920px;margin:0 auto;background:#d4d0c8;border:2px outset #fff}
+.tt{background:#0a246a;color:#fff;padding:3px 6px;font-weight:bold;display:flex;justify-content:space-between;font-size:12px}
+.tt i{font-style:normal;display:flex;gap:3px}.tt b{background:#d4d0c8;color:#000;width:15px;height:13px;line-height:12px;text-align:center;border:1px outset #fff;font-size:9px}
+.mn{display:flex;gap:14px;padding:3px 8px;border-bottom:1px solid #808080}
+.tb{display:flex;gap:4px;padding:3px 6px;border-bottom:1px solid #808080}
+.tb span{border:2px outset #fff;padding:2px 10px;min-width:54px;text-align:center}
+.cnt{padding:10px}
+.gb{border:1px solid #808080;padding:12px 8px 8px;margin:10px 0;position:relative}
+.gb>.lg{position:absolute;top:-7px;left:8px;background:#d4d0c8;padding:0 3px}
+.frow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+label{display:inline-block;min-width:96px}
+input,textarea,select{font:11px Tahoma,Verdana,Arial,sans-serif;border:2px inset #fff;background:#fff;padding:2px 4px;color:#000}
+textarea{width:100%}
+button,.bd{font:11px Tahoma,Verdana,Arial,sans-serif;border:2px outset #fff;background:#d4d0c8;padding:3px 14px;color:#000;cursor:pointer;font-weight:bold}
+button:active{border-style:inset}
+.tabs{display:flex;gap:1px;padding:4px 0 0}.tabs span{border:1px solid #808080;border-bottom:0;padding:2px 10px;background:#c4c0b8}.tabs .a{background:#d4d0c8;font-weight:bold}
+.pn{border:1px solid #808080;padding:10px}
+dl{display:grid;grid-template-columns:150px 1fr;gap:6px 8px;margin:0;align-items:center}dt{margin:0}
+dd{margin:0;border:2px inset #fff;background:#fff;padding:1px 4px;min-height:17px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{background:#d4d0c8;border:1px outset #fff;padding:2px 5px;text-align:left;font-weight:normal}
+td{border:1px solid #c0c0c0;padding:2px 5px}td.n,th.n{text-align:right}
+.lines{background:#fff;border:2px inset #fff}.lines .line{padding:2px 6px;border-bottom:1px solid #d0d0d0;font:11px 'Courier New',monospace}
+.hint{margin:0 0 4px;color:#404040}
+.msgbox,.err{border:2px outset #fff;background:#d4d0c8;padding:10px;margin:10px 0;border-left:30px solid #c00000}
+.ok{color:#006400}.warn{color:#8a5a00}.bad{color:#b00000}
+.sb{display:flex;gap:2px;padding:2px;border-top:1px solid #808080;margin-top:4px}
+.sb>*{border:1px inset #fff;padding:1px 6px;margin:0}
+.sb .st{flex:4;background:#ffffcc;font-weight:normal}
+.sb span{flex:1}
+.ft{max-width:920px;margin:8px auto;text-align:center;color:#e0ffff;font-size:10px}.ft a{color:#fff}
 </style></head>
-<body><header><span class="logo">RBC</span><h1>Capital Markets demo screens</h1><small>Fictional data</small></header>
-<main><div class="card"><h2>Screens the automations work</h2>
+<body><div class="win"><div class="tt"><span>Program Manager - Capital Markets demo screens</span><i><b>_</b><b>&#9633;</b><b>x</b></i></div>
+<div class="cnt"><div class="gb"><span class="lg">Screens the automations work</span>
 <table><tbody>
 <tr><td><a href="crm.html">Client Relationship Manager</a></td><td>Look up a client by trade reference</td></tr>
 <tr><td><a href="cds.html">CDS settlement entry</a></td><td>Key in a settlement instruction and read the status by account</td></tr>
 <tr><td><a href="gl.html">General ledger journal</a></td><td>Post a trade's journal entries</td></tr>
-</tbody></table></div></main><footer>Mock screens for an automation demo. Not real systems.</footer></body></html>
+</tbody></table></div></div>
+<div class="sb"><p class="st">Fictional data. Not real systems.</p></div></div></body></html>

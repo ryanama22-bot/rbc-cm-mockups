@@ -1,48 +1,52 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CDS settlement entry</title><style>
-*{box-sizing:border-box}body{margin:0;font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1d2733;background:#eef1f5}
-header{background:#0b3a78;color:#fff;padding:12px 24px;display:flex;align-items:center;gap:14px}
-header .logo{background:#ffd100;color:#0b3a78;font-weight:800;padding:4px 8px;border-radius:4px;letter-spacing:.5px}
-header h1{font-size:17px;margin:0;font-weight:600}header small{opacity:.8;margin-left:auto}
-main{max-width:980px;margin:22px auto;padding:0 18px}
-.card{background:#fff;border:1px solid #d9dee5;border-radius:8px;padding:16px 18px;margin-bottom:16px}
-.card h2{font-size:14px;margin:0 0 10px;color:#0b3a78;text-transform:none}
-label{display:block;font-size:12px;color:#5c6b7a;margin-bottom:3px}
-input,select,textarea{font:inherit;padding:7px 9px;border:1px solid #b9c2cd;border-radius:6px;width:100%;background:#fff}
-button{font:inherit;font-weight:600;padding:8px 16px;border:0;border-radius:6px;background:#0b3a78;color:#fff;cursor:pointer}
-.row{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.row>div{flex:1;min-width:140px}.row>.fit{flex:0 0 auto;min-width:0}
-dl{display:grid;grid-template-columns:200px 1fr;gap:6px 14px;margin:0}dt{color:#5c6b7a}dd{margin:0;font-weight:600}
-table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #e3e7ed}th{font-size:12px;color:#5c6b7a;font-weight:600}
-td.n,th.n{text-align:right}
-.hidden{display:none}.err{background:#fdeceb;border:1px solid #f1b5b1;color:#8d1c14;padding:10px 14px;border-radius:6px}
-.ok{color:#1c6b3a}.warn{color:#8a5a00}.bad{color:#8d1c14}
-.hint{font-size:12px;color:#5c6b7a;margin:0 0 6px}
-.status{margin:10px 0 0;font-weight:600}
-.lines .line{padding:6px 8px;border-bottom:1px solid #e3e7ed;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
-footer{text-align:center;font-size:12px;color:#7a8794;margin:30px 0}
+*{box-sizing:border-box}.hidden{display:none!important}
+
+body{margin:0;background:#000;color:#33ff33;font:14px/1.4 'Courier New',Courier,monospace;padding:14px}
+.scr{max-width:940px;margin:0 auto;border:2px solid #1a661a;padding:12px 16px}
+.hd{white-space:pre;color:#33ff33}
+.hd .dim{color:#1f9f1f}
+hr{border:0;border-top:1px solid #1a661a;margin:6px 0}
+h2{font-size:14px;margin:12px 0 4px;color:#ffff55;font-weight:normal;text-transform:uppercase}
+label{display:inline-block;min-width:260px;color:#7ec8ff;text-transform:uppercase}
+input{font:14px 'Courier New',monospace;background:#000;color:#33ff33;border:0;border-bottom:1px solid #33ff33;padding:1px 4px;caret-color:#33ff33;border-radius:0;outline:0}
+input:focus{background:#0a2a0a}
+.fld{margin:3px 0}
+table{border-collapse:collapse}th{color:#ffff55;text-align:left;font-weight:normal;text-transform:uppercase;padding:2px 14px 2px 0}td{padding:1px 14px 1px 0}
+button{font:14px 'Courier New',monospace;background:#000;color:#33ff33;border:1px solid #33ff33;padding:2px 10px;cursor:pointer;border-radius:0}
+button:hover{background:#0a2a0a}
+dl{display:grid;grid-template-columns:260px 1fr;gap:1px 8px;margin:0}dt{color:#7ec8ff;text-transform:uppercase}dd{margin:0}
+.lines .line{font-family:'Courier New',monospace;padding:0;white-space:pre-wrap}
+.hint{color:#1f9f1f;margin:0}
+.err{color:#ff5555;margin:8px 0}.ok{color:#33ff33}.warn{color:#ffff55}.bad{color:#ff5555}
+.msg{margin:10px 0 0;color:#33ff33}.msg.bad{color:#ff5555}.msg::before{content:'MSG: ';color:#ffff55}
+.fk{margin-top:12px;color:#7ec8ff}
+.cur::after{content:'_';animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.ft{max-width:940px;margin:6px auto;color:#1f9f1f;font-size:11px;text-align:center}.ft a{color:#33ff33}
 </style></head>
 <body>
-<header><span class="logo">RBC</span><h1>CDS settlement entry</h1><small>Capital Markets demo system. Fictional data.</small></header>
-<main>
+<div class="scr">
+<div class="hd">CDSA0412          CDS CLEARING AND SETTLEMENT           <span id="dt"></span>
+PARTICIPANT 1042      SETTLEMENT INSTRUCTION ENTRY<span class="dim">     SESSION OPEN</span></div>
+<hr>
 
-<div class="card"><h2>New settlement instruction</h2>
- <div class="row"><div><label for="txtTradeId">Trade reference</label><input id="txtTradeId" placeholder="TRD-CM-00001" autocomplete="off"></div>
- <div><label for="txtSettleDate">Settlement date (YYYY-MM-DD)</label><input id="txtSettleDate" placeholder="2026-11-18" autocomplete="off"></div></div>
- <h2 style="margin-top:16px">Allocations to settle</h2>
- <table id="tblAlloc"><thead><tr><th>Account</th><th>Quantity (shares)</th></tr></thead><tbody><tr><td><input id="txtAcct1" aria-label="Account 1" placeholder="MCP-CEF"></td><td><input id="txtQty1" aria-label="Quantity 1" inputmode="numeric" placeholder="0"></td></tr><tr><td><input id="txtAcct2" aria-label="Account 2" placeholder="MCP-CEF"></td><td><input id="txtQty2" aria-label="Quantity 2" inputmode="numeric" placeholder="0"></td></tr><tr><td><input id="txtAcct3" aria-label="Account 3" placeholder="MCP-CEF"></td><td><input id="txtQty3" aria-label="Quantity 3" inputmode="numeric" placeholder="0"></td></tr></tbody></table>
- <p><button id="btnSubmit" type="button">Submit to CDS</button></p>
- <p class="hint">Leave unused rows blank. Each account settles on its own.</p>
- <p id="spnStatus" class="status">Ready.</p></div>
+<div class="fld"><label for="txtTradeId">Trade reference</label><input id="txtTradeId" placeholder="TRD-CM-00001" autocomplete="off" size="16"></div>
+<div class="fld"><label for="txtSettleDate">Settlement date (YYYY-MM-DD)</label><input id="txtSettleDate" placeholder="2026-11-18" autocomplete="off" size="12"></div>
+<h2>Allocations to settle</h2>
+<table id="tblAlloc"><thead><tr><th>Account</th><th>Quantity (shares)</th></tr></thead><tbody><tr><td><input id="txtAcct1" aria-label="Account 1" placeholder="MCP-CEF"></td><td><input id="txtQty1" aria-label="Quantity 1" inputmode="numeric" placeholder="0"></td></tr><tr><td><input id="txtAcct2" aria-label="Account 2" placeholder="MCP-CEF"></td><td><input id="txtQty2" aria-label="Quantity 2" inputmode="numeric" placeholder="0"></td></tr><tr><td><input id="txtAcct3" aria-label="Account 3" placeholder="MCP-CEF"></td><td><input id="txtQty3" aria-label="Quantity 3" inputmode="numeric" placeholder="0"></td></tr></tbody></table>
+<p><button id="btnSubmit" type="button">Submit to CDS</button> <span class="hint">F10 = submit. Leave unused rows blank.</span></p>
 <div id="divError" class="err hidden"></div>
 <div id="divConfirmation" class="hidden">
- <div class="card"><h2>Instruction accepted</h2><dl>
+ <h2>Instruction accepted</h2><dl>
   <dt>Trade reference</dt><dd id="spnTradeId"></dd><dt>Settlement date</dt><dd id="spnSettleDate"></dd>
-  <dt>Submitted</dt><dd id="spnSubmittedAt"></dd><dt>Last updated</dt><dd id="spnUpdatedAt"></dd><dt>Overall status</dt><dd id="spnTradeStatus"></dd></dl></div>
- <div class="card"><h2>Status by account</h2><p class="hint">Account | Instructed | Settled | Status | Cash (CAD) | Message ;</p><div id="tblResult" class="lines"></div></div>
+  <dt>Submitted</dt><dd id="spnSubmittedAt"></dd><dt>Last updated</dt><dd id="spnUpdatedAt"></dd><dt>Overall status</dt><dd id="spnTradeStatus"></dd></dl>
+ <h2>Status by account</h2><p class="hint">Account | Instructed | Settled | Status | Cash (CAD) | Message ;</p><div id="tblResult" class="lines"></div>
 </div>
-</main>
-<footer>Mock screen for an automation demo. Not a real system. <a href="index.html">All screens</a></footer>
+<p id="spnStatus" class="msg">Ready.</p>
+<div class="fk">F1=HELP  F3=EXIT  F5=REFRESH  F9=VALIDATE  F10=SUBMIT  F12=CANCEL</div>
+</div>
+<div class="ft">Demo system with fictional data. Not a real system. <a href="index.html">All screens</a></div>
 <script>
 const DATA = {"TRD-CM-00001": {"tradeId": "TRD-CM-00001", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 93726, "settledQuantity": 93726, "status": "Settled", "cashAmount": 4529983.78, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 56236, "settledQuantity": 56236, "status": "Settled", "cashAmount": 2718009.6, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 37491, "settledQuantity": 37491, "status": "Settled", "cashAmount": 1812022.52, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00002": {"tradeId": "TRD-CM-00002", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 100000, "settledQuantity": 100000, "status": "Settled", "cashAmount": 3144180.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 100000, "settledQuantity": 100000, "status": "Settled", "cashAmount": 3144180.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 50000, "settledQuantity": 50000, "status": "Settled", "cashAmount": 1572090.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00003": {"tradeId": "TRD-CM-00003", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 125000, "settledQuantity": 125000, "status": "Settled", "cashAmount": 6020625.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 75000, "settledQuantity": 75000, "status": "Settled", "cashAmount": 3612375.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 50000, "settledQuantity": 50000, "status": "Settled", "cashAmount": 2408250.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00004": {"tradeId": "TRD-CM-00004", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 125000, "settledQuantity": 125000, "status": "Settled", "cashAmount": 2861137.5, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 75000, "settledQuantity": 75000, "status": "Settled", "cashAmount": 1716682.5, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 50000, "settledQuantity": 40000, "status": "Partial", "cashAmount": 915564.0, "message": "Partial delivery: 40000 of 50000 delivered; balance pending counterparty"}], "tradeStatus": "PartiallySettled"}, "TRD-CM-00006": {"tradeId": "TRD-CM-00006", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 90000, "settledQuantity": 90000, "status": "Settled", "cashAmount": 2489040.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 54000, "settledQuantity": 54000, "status": "Settled", "cashAmount": 1493424.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 36000, "settledQuantity": 36000, "status": "Settled", "cashAmount": 995616.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00007": {"tradeId": "TRD-CM-00007", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 47500, "settledQuantity": 47500, "status": "Settled", "cashAmount": 2907261.25, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 28500, "settledQuantity": 28500, "status": "Settled", "cashAmount": 1744356.75, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 19000, "settledQuantity": 19000, "status": "Settled", "cashAmount": 1162904.5, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00008": {"tradeId": "TRD-CM-00008", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 155000, "settledQuantity": 155000, "status": "Settled", "cashAmount": 2936785.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 93000, "settledQuantity": 93000, "status": "Settled", "cashAmount": 1762071.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 62000, "settledQuantity": 62000, "status": "Settled", "cashAmount": 1174714.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00009": {"tradeId": "TRD-CM-00009", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 84000, "settledQuantity": 84000, "status": "Settled", "cashAmount": 3032610.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 35000, "settledQuantity": 35000, "status": "Settled", "cashAmount": 1263587.5, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 21000, "settledQuantity": 21000, "status": "Settled", "cashAmount": 758152.5, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00010": {"tradeId": "TRD-CM-00010", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 154000, "settledQuantity": 154000, "status": "Settled", "cashAmount": 6522362.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 44000, "settledQuantity": 44000, "status": "Settled", "cashAmount": 1863532.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 22000, "settledQuantity": 22000, "status": "Settled", "cashAmount": 931766.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00011": {"tradeId": "TRD-CM-00011", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 87500, "settledQuantity": 87500, "status": "Settled", "cashAmount": 2149962.5, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 52500, "settledQuantity": 52500, "status": "Settled", "cashAmount": 1289977.5, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 35000, "settledQuantity": 35000, "status": "Settled", "cashAmount": 859985.0, "message": ""}], "tradeStatus": "Settled"}, "TRD-CM-00012": {"tradeId": "TRD-CM-00012", "settleDate": "2026-11-18", "submittedAt": "2026-11-17T19:05:00-05:00", "updatedAt": "2026-11-18T09:14:36-05:00", "allocations": [{"accountId": "MCP-CEF", "instructedQuantity": 104000, "settledQuantity": 104000, "status": "Settled", "cashAmount": 1642056.0, "message": ""}, {"accountId": "MCP-BAL", "instructedQuantity": 104000, "settledQuantity": 104000, "status": "Settled", "cashAmount": 1642056.0, "message": ""}, {"accountId": "MCP-DIV", "instructedQuantity": 52000, "settledQuantity": 30000, "status": "Partial", "cashAmount": 473670.0, "message": "Partial delivery: 30000 of 52000 delivered; balance pending counterparty"}], "tradeStatus": "PartiallySettled"}};
 const $ = (id) => document.getElementById(id);
@@ -70,5 +74,7 @@ function submit() {
 }
 $('btnSubmit').addEventListener('click', submit);
 
+(()=>{const m=document.getElementById('spnStatus');new MutationObserver(()=>m.classList.toggle('bad',/^Rejected/.test(m.textContent))).observe(m,{childList:true,characterData:true,subtree:true});})();
+document.getElementById('dt').textContent=new Date().toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'numeric'});
 </script>
 </body></html>
